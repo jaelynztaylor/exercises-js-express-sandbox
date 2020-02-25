@@ -75,6 +75,8 @@ app.get('/', (request, response) => {
     <li><a href="/bake?baked_good=loaves+of+bread&count=5">Bake 5 loaves of bread</a> — notice how we represent spaces in the URL.</li>
     <li><a href="/bake?baked_good=cupcakes&count=1138">Bake 1138 cupcakes</a></li>
     </ul>
+
+
   `;
 
   let pageHtml = getLayoutHTML(content);
@@ -149,12 +151,34 @@ app.get('/bake', (request, response) => {
 
   content += '<ul>';
 
-  for(let i = 1; i <= count; i++) {
+  for (let i = 1; i <= count; i++) {
     content += `<li>${bakedGood} number ${i}</li>`;
   }
 
   content += '</ul>';
 
+  response.send(getLayoutHTML(content));
+});
+
+app.get('/greet', (request, response) => {
+  let userName = request.query.user_name;
+
+  let content = `
+    <h1>You have reached the Greeting Page ${userName}!</h1>
+    <p>
+      <a href='/'>Back to the homepage</a>
+    </p>
+    <form method="GET" action="/greet">
+      <div class="form-section">
+        <label for="user_name">Enter your first name here:</label>
+        <input type="text" name="user_name" id="user_name" required>
+      </div>
+      <div class="form-section">
+        <input type="submit" value="Generate">
+      </div>
+    </form>
+    <h2>Welcome ${userName}</h2>
+ `;
   response.send(getLayoutHTML(content));
 });
 
