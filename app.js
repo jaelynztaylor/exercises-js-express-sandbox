@@ -74,6 +74,7 @@ app.get('/', (request, response) => {
     <li><a href="/bake?baked_good=cookies&count=10">Bake 10 cookies</a></li>
     <li><a href="/bake?baked_good=loaves+of+bread&count=5">Bake 5 loaves of bread</a> — notice how we represent spaces in the URL.</li>
     <li><a href="/bake?baked_good=cupcakes&count=1138">Bake 1138 cupcakes</a></li>
+    <li><a href="/greet">Greeting Page</a></li>
     </ul>
 
 
@@ -164,13 +165,13 @@ app.get('/greet', (request, response) => {
   let userName = request.query.user_name;
 
   let content = `
-    <h1>You have reached the Greeting Page ${userName}!</h1>
+    <h1>You have reached the Greeting Page!</h1>
     <p>
       <a href='/'>Back to the homepage</a>
     </p>
     <form method="GET" action="/greet">
       <div class="form-section">
-        <label for="user_name">Enter your first name here:</label>
+        <label for="user_name">Enter your name here:</label>
         <input type="text" name="user_name" id="user_name" required>
       </div>
       <div class="form-section">
