@@ -183,6 +183,29 @@ app.get('/greet', (request, response) => {
   response.send(getLayoutHTML(content));
 });
 
+app.get('/timezone', (request, response) => {
+  let timeZone = request.query.time_zone;
+
+  let content = `
+    <h1>Welcome to the Time Zone!</h1>
+    <p>
+      <a href='/'>Back to the homepage</a>
+    </p>
+    <form method="GET" action="/timezone">
+      <div class="form-section">
+        <label for="time_zone">Enter your name here:</label>
+        <input type="text" name="time_zone" id="time_zone" required>
+      </div>
+      <div class="form-section">
+        <input type="submit" value="Generate">
+      </div>
+    </form>
+    <h2>Welcome ${userName}</h2>
+ `;
+  response.send(getLayoutHTML(content));
+});
+
+
 let SERVER_PORT = process.env.PORT || 3000;
 
 app.listen(SERVER_PORT, () => {
